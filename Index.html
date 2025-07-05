@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SALMA ELFA - Moderne & Responsive</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #0077cc, #004a7c);
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background: rgba(0,0,0,0.35);
+      padding: 20px 40px;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .brand {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      user-select: none;
+    }
+
+    .auth-buttons button {
+      background: #00bfff;
+      border: none;
+      padding: 10px 22px;
+      margin-left: 12px;
+      border-radius: 30px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .auth-buttons button:hover,
+    .auth-buttons button:focus-visible {
+      background: #005f99;
+      outline: 3px solid #00bfff;
+      outline-offset: 2px;
+    }
+
+    nav {
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      padding: 14px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      flex-wrap: wrap;
+      gap: 12px;
+      user-select: none;
+    }
+
+    nav a {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #0077cc;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      background: #0077cc;
+      color: white;
+      box-shadow: 0 0 10px #0077cc;
+      outline: none;
+    }
+
+    main.content {
+      width: 100%;
+      max-width: 1100px;
+      background: white;
+      border-radius: 20px;
+      margin: 30px auto 60px;
+      padding: 40px 30px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Message for "en cours" */
+    .section-message {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0077cc;
+      padding: 40px;
+      border: 3px dashed #0077cc;
+      border-radius: 15px;
+      text-align: center;
+      user-select: none;
+    }
+
+    /* Equipment cards for RÉSEAUX */
+    .equipment-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      width: 100%;
+      padding-top: 10px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #e6f0ff, #ffffff);
+      border-radius: 20px;
+      width: 280px;
+      box-shadow: 0 8px 20px rgba(0,119,204,0.3);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,119,204,0.6);
+      outline: none;
+    }
+
+    .card:focus-visible {
+      outline: 3px solid #00bfff;
+      outline-offset: 4px;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 4px solid #0077cc;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    .card .number {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background-color: #0077cc;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      width: 34px;
+      height: 34px;
+      line-height: 34px;
+      border-radius: 50%;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      user-select: none;
+    }
+
+    .card h3 {
+      color: #004a7c;
+      margin: 20px 0 8px;
+      font-size: 24px;
+    }
+
+    .card p.price {
+      color: #cc00cc;
+      font-size: 21px;
+      font-weight: 900;
+      margin: 8px 0 12px;
+    }
+
+    .card p.desc {
+      font-size: 1rem;
+      color: #222;
+      padding: 0 15px;
+      line-height: 1.3;
+      min-height: 54px;
+    }
+
+    /* Contact box */
+    #contact {
+      max-width: 450px;
+      width: 90%;
+      padding: 25px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,119,204,0.3);
+      border: 2px solid #0077cc;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      user-select: none;
+    }
+
+    /* Login and Signup */
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: left;
+      width: 100%;
+    }
+
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0 20px;
+      border-radius: 12px;
+      border: 2px solid #0077cc;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #00bfff;
+      outline: none;
+    }
+
+    button.submit-btn {
+      background: #0077cc;
+      color: white;
+      border: none;
+      padding: 15px;
+      width: 100%;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button.submit-btn:hover,
+    button.submit-btn:focus-visible {
+      background: #004a7c;
+      outline: 3px solid #00bfff;
+      outline-offset: 2px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        font-size: 18px;
+      }
+
+      .equipment-list {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card {
+        width: 90%;
+        max-width: 400px;
+      }
+    }
+
+    /* Hide all except default initially */
+    #equipements, #contact, #login, #signup, #sectionMessage {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand" aria-label="Nom du site">SALMA ELFA</div>
+  <div class="auth-buttons">
+    <button onclick="showSection('signup')" aria-label="Bouton pour s'inscrire">Sign Up</button>
+    <button onclick="showSection('login')" aria-label="Bouton pour se connecter">Login</button>
+  </div>
+</header>
+
+<nav role="navigation" aria-label="Menu principal">
+  <a href="#" onclick="showMessage(); return false;" tabindex="0" role="link" aria-label="Ordinateur catégorie">ORDINATEUR</a>
+  <a href="#" onclick="showMessage(); return false;" tabindex="0" role="link" aria-label="Accessoires catégorie">ACCESSOIRES</a>
+  <a href="#" onclick="showMessage(); return false;" tabindex="0" role="link" aria-label="Impression catégorie">IMPRESSION</a>
+  <a href="#" onclick="showMessage(); return false;" tabindex="0" role="link" aria-label="Logiciels catégorie">LOGICIELS</a>
+  <a href="#" onclick="showEquipements(); return false;" tabindex="0" role="link" aria-label="Réseaux catégorie">RÉSEAUX</a>
+  <a href="#" onclick="showContact(); return false;" tabindex="0" role="link" aria-label="Contactez-nous">CONTACTEZ-NOUS</a>
+</nav>
+
+<main class="content" role="main">
+  <section id="default" tabindex="0" aria-live="polite" aria-label="Bienvenue">
+    <h2>Bienvenue sur le site de SALMA ELFA</h2>
+    <p>Choisissez une catégorie ci-dessus pour commencer</p>
+  </section>
+
+  <section id="sectionMessage" class="section-message" tabindex="0" aria-live="polite" aria-label="Message">
+    En cours de réalisation...
+  </section>
+
+  <section id="equipements" class="equipment-list" aria-label="Liste des équipements réseaux" tabindex="0">
+    <article class="card" tabindex="0" role="button" aria-pressed="false" aria-label="Routeur, prix 6888 dirhams">
+      <div class="number">1</div>
+      <img src="https://m.media-amazon.com/images/I/81CszTVDeHL.jpg" alt="Image d'un routeur" />
+      <h3>Routeur</h3>
+      <p class="price">6888 MAD</p>
+      <p class="desc">Routeur performant avec plusieurs ports Ethernet pour réseaux domestiques et professionnels.</p>
+    </article>
+
+    <article class="card" tabindex="0" role="button" aria-pressed="false" aria-label="Switch, prix 20484 dirhams">
+      <div class="number">2</div>
+      <img src="https://m.media-amazon.com/images/I/71adIgi8u-L._AC_SL1500_.jpg" alt="Image d'un switch réseau" />
+      <h3>Switch</h3>
+      <p class="price">20484 MAD</p>
+      <p class="desc">Switch manageable pour optimiser la gestion de votre réseau.</p>
+    </article>
+
+    <article class="card" tabindex="0" role="button" aria-pressed="false" aria-label="Modem, prix 768 dirhams">
+      <div class="number">3</div>
+      <img src="https://m1.ngt.ma/8173-large_default/modem-routeur-wifi-ac1200-vdsladsl-archer-vr300-.jpg" alt="Image d'un modem" />
+      <h3>Modem</h3>
+      <p class="price">768 MAD</p>
+      <p class="desc">Modem VDSL/ADSL performant pour une connexion Internet stable.</p>
+    </article>
+
+    <article class="card" tabindex="0" role="button" aria-pressed="false" aria-label="Point d'accès, prix 399 dirhams">
+      <div class="number">4</div>
+      <img src="https://ma.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/56/442756/1.jpg" alt="Image d'un point d'accès Wi-Fi" />
+      <h3>Point d'accès</h3>
+      <p class="price">399 MAD</p>
+      <p class="desc">Point d'accès Wi-Fi pour étendre la couverture réseau sans fil.</p>
+    </article>
+
+    <article class="card" tabindex="0" role="button" aria-pressed="false" aria-label="Câble Ethernet, prix 114 dirhams">
+      <div class="number">5</div>
+      <img src="https://ma.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/51/033566/1.jpg" alt="Image d'un câble Ethernet" />
+      <h3>Câble Ethernet</h3>
+      <p class="price">114 MAD</p>
+      <p class="desc">Câble Ethernet catégorie 6 pour des connexions rapides et stables.</p>
+    </article>
+
+    <article class="card" tabindex="0" role="button" aria-pressed="false" aria-label="Pare-feu, prix 16000 dirhams">
+      <div class="number">6</div>
+      <img src="https://m.media-amazon.com/images/I/616WSlOiycL._AC_SL1500_.jpg" alt="Image d'un pare-feu matériel" />
+      <h3>Pare-feu</h3>
+      <p class="price">16000 MAD</p>
+      <p class="desc">Pare-feu matériel pour protéger votre réseau des attaques externes.</p>
+    </article>
+  </section>
+
+  <section id="contact" tabindex="0" aria-label="Informations de contact">
+    <h2>Contactez-nous</h2>
+    <p><strong>Email :</strong> <a href="mailto:salma.elfarouki399@gmail.com">salma.elfarouki399@gmail.com</a></p>
+    <p><strong>Téléphone :</strong> <a href="tel:+212615268291">+212 615268291</a></p>
+    <p><strong>Adresse :</strong> Hay lmaacella, Ain Kadousss à côté de Ahl Fes de Poisson</p>
+  </section>
+
+  <section id="login" class="form-container" style="display:none;" tabindex="0" aria-label="Formulaire de connexion">
+    <h2>Connexion</h2>
+    <form id="loginForm" onsubmit="return sendLogin();">
+      <label for="loginEmail">Email :</label>
+      <input type="email" id="loginEmail" placeholder="Email" required aria-required="true" />
+      
+      <label for="loginPassword">Mot de passe :</label>
+      <input type="password" id="loginPassword" placeholder="Mot de passe" required aria-required="true" />
+      
+      <button type="submit" class="submit-btn">Se connecter</button>
+      <p id="loginMessage" aria-live="polite" style="color:red;"></p>
+    </form>
+  </section>
+
+  <section id="signup" class="form-container" style="display:none;" tabindex="0" aria-label="Formulaire d'inscription">
+    <h2>Créer un compte</h2>
+    <form id="signupForm" onsubmit="return sendSignup();">
+      <label for="signupName">Nom complet :</label>
+      <input type="text" id="signupName" placeholder="Nom complet" required aria-required="true" />
+      
+      <label for="signupEmail">Email :</label>
+      <input type="email" id="signupEmail" placeholder="Email" required aria-required="true" />
+      
+      <label for="signupPassword">Mot de passe :</label>
+      <input type="password" id="signupPassword" placeholder="Mot de passe" required aria-required="true" />
+      
+      <button type="submit" class="submit-btn">S'inscrire</button>
+      <p id="signupMessage" aria-live="polite" style="color:red;"></p>
+    </form>
+  </section>
+</main>
+
+<script>
+  function hideAll() {
+    ['equipements', 'contact', 'default', 'sectionMessage', 'login', 'signup'].forEach(id => {
+      document.getElementById(id).style.display = 'none';
+    });
+  }
+
+  function showEquipements() {
+    hideAll();
+    document.getElementById('equipements').style.display = 'flex';
+  }
+
+  function showContact() {
+    hideAll();
+    document.getElementById('contact').style.display = 'block';
+  }
+
+  function showMessage() {
+    hideAll();
+    document.getElementById('sectionMessage').style.display = 'block';
+  }
+
+  function showSection(name) {
+    hideAll();
+    const section = document.getElementById(name);
+    if (section) {
+      section.style.display = 'block';
+    } else {
+      showMessage();
+    }
+  }
+
+  // Validation login
+  function sendLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+    const messageEl = document.getElementById('loginMessage');
+    messageEl.textContent = '';
+
+    if (!email) {
+      messageEl.textContent = 'Veuillez saisir votre email.';
+      return false;
+    }
+    if (!validateEmail(email)) {
+      messageEl.textContent = 'Veuillez saisir un email valide.';
+      return false;
+    }
+    if (!password) {
+      messageEl.textContent = 'Veuillez saisir votre mot de passe.';
+      return false;
+    }
+    alert("Connexion réussie !\nEmail : " + email);
+    return false; // Prevent actual form submission for demo
+  }
+
+  // Validation signup
+  function sendSignup() {
+    const name = document.getElementById('signupName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const password = document.getElementById('signupPassword').value.trim();
+    const messageEl = document.getElementById('signupMessage');
+    messageEl.textContent = '';
+
+    if (!name) {
+      messageEl.textContent = 'Veuillez saisir votre nom complet.';
+      return false;
+    }
+    if (!email) {
+      messageEl.textContent = 'Veuillez saisir votre email.';
+      return false;
+    }
+    if (!validateEmail(email)) {
+      messageEl.textContent = 'Veuillez saisir un email valide.';
+      return false;
+    }
+    if (!password) {
+      messageEl.textContent = 'Veuillez saisir un mot de passe.';
+      return false;
+    }
+    if (password.length < 6) {
+      messageEl.textContent = 'Le mot de passe doit contenir au moins 6 caractères.';
+      return false;
+    }
+    alert("Inscription réussie !\nEmail : " + email);
+    return false; // Prevent actual form submission for demo
+  }
+
+  // Email regex simple
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email.toLowerCase());
+  }
+</script>
+
+</body>
+</html>
