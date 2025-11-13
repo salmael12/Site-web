@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation - Sandbox Environment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide {
+            width: 90%;
+            max-width: 1200px;
+            height: 85vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px 80px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide h1 {
+            font-size: 3.5rem;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .slide h2 {
+            font-size: 2.5rem;
+            color: #764ba2;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .slide h3 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 20px;
+            margin-top: 30px;
+            font-weight: 600;
+        }
+
+        .slide p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .slide ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .slide li {
+            font-size: 1.4rem;
+            line-height: 2;
+            color: #444;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .slide li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffd89b 0%, #19547b 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .card h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .card p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            color: #667eea;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #667eea;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .title-slide {
+            text-align: center;
+            justify-content: center !important;
+        }
+
+        .title-slide h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.8rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            margin: 5px;
+            font-weight: 500;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <span class="emoji">🚀</span>
+            <h1>Sandbox Environment</h1>
+            <p class="subtitle">Environnement de développement isolé et sécurisé</p>
+            <p class="subtitle" style="margin-top: 40px; font-size: 1.3rem;">Amazon Linux 2023 | Node.js 22 | Python 3</p>
+        </div>
+
+        <!-- Slide 2: Qu'est-ce qu'un Sandbox? -->
+        <div class="slide">
+            <h2>🔒 Qu'est-ce qu'un Sandbox Environment?</h2>
+            <p style="margin-top: 30px;">Un <span class="highlight">sandbox</span> est un environnement d'exécution isolé qui permet de tester et d'exécuter du code en toute sécurité.</p>
+            
+            <h3>Avantages principaux:</h3>
+            <ul>
+                <li>Isolation complète du système hôte</li>
+                <li>Sécurité renforcée pour l'exécution de code</li>
+                <li>Environnement reproductible et cohérent</li>
+                <li>Facilite les tests sans risque</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Configuration Technique -->
+        <div class="slide">
+            <h2>⚙️ Configuration Technique</h2>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Système d'exploitation</h3>
+                    <p><strong>Amazon Linux 2023</strong></p>
+                    <p>Distribution Linux optimisée pour le cloud avec gestionnaire de paquets DNF</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Runtime JavaScript</h3>
+                    <p><strong>Node.js 22</strong></p>
+                    <p>Dernière version LTS pour des performances optimales</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 30px;">
+                <h3>Support Python</h3>
+                <p><strong>Python 3</strong> disponible avec installation de Pip requise avant les dépendances</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Gestionnaire de Paquets -->
+        <div class="slide">
+            <h2>📦 Gestionnaire de Paquets DNF</h2>
+            
+            <p>DNF (Dandified YUM) est le gestionnaire de paquets moderne d'Amazon Linux 2023</p>
+
+            <h3>Commandes essentielles:</h3>
+            <div class="code-block">
+# Installation de paquets
+dnf install package-name
+
+# Mise à jour du système
+dnf update
+
+# Recherche de paquets
+dnf search keyword
+
+# Informations sur un paquet
+dnf info package-name
+            </div>
+        </div>
+
+        <!-- Slide 5: Node.js 22 -->
+        <div class="slide">
+            <h2>🟢 Node.js 22 Runtime</h2>
+            
+            <p>Node.js 22 apporte des améliorations significatives en termes de performances et de fonctionnalités</p>
+
+            <h3>Installation des dépendances:</h3>
+            <div class="code-block">
+# Initialiser un projet Node.js
+npm init -y
+
+# Installer des dépendances
+npm install express
+
+# Exécuter un script
+node app.js
+            </div>
+
+            <div class="tech-stack">
+                <span class="badge">npm</span>
+                <span class="badge">yarn</span>
+                <span class="badge">pnpm</span>
+                <span class="badge">ES Modules</span>
+            </div>
+        </div>
+
+        <!-- Slide 6: Python 3 -->
+        <div class="slide">
+            <h2>🐍 Python 3 Support</h2>
+            
+            <p><strong>Important:</strong> Pip doit être installé avant de procéder aux installations de dépendances</p>
+
+            <h3>Configuration Python:</h3>
+            <div class="code-block">
+# Installer pip
+python3 -m ensurepip --upgrade
+
+# Installer des packages
+pip install requests numpy pandas
+
+# Créer un environnement virtuel
+python3 -m venv venv
+source venv/bin/activate
+
+# Installer depuis requirements.txt
+pip install -r requirements.txt
+            </div>
+        </div>
+
+        <!-- Slide 7: Workflow de Développement -->
+        <div class="slide">
+            <h2>🔄 Workflow de Développement</h2>
+            
+            <ul>
+                <li><strong>Étape 1:</strong> Initialiser l'environnement sandbox</li>
+                <li><strong>Étape 2:</strong> Installer les gestionnaires de paquets nécessaires (pip pour Python)</li>
+                <li><strong>Étape 3:</strong> Installer les dépendances du projet</li>
+                <li><strong>Étape 4:</strong> Développer et tester le code en isolation</li>
+                <li><strong>Étape 5:</strong> Valider les résultats avant déploiement</li>
+            </ul>
+        </div>
+
+        <!-- Slide 8: Bonnes Pratiques -->
+        <div class="slide">
+            <h2>✅ Bonnes Pratiques</h2>
+            
+            <div class="grid-2">
+                <div>
+                    <h3>Sécurité</h3>
+                    <ul style="margin-left: 0;">
+                        <li>Toujours tester en sandbox d'abord</li>
+                        <li>Limiter les permissions</li>
+                        <li>Isoler les environnements</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>Performance</h3>
+                    <ul style="margin-left: 0;">
+                        <li>Utiliser les versions LTS</li>
+                        <li>Optimiser les dépendances</li>
+                        <li>Monitorer les ressources</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <h3>Gestion des Dépendances</h3>
+                <ul style="margin-left: 0;">
+                    <li>Documenter toutes les dépendances (package.json, requirements.txt)</li>
+                    <li>Versionner les packages pour la reproductibilité</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 9: Conclusion -->
+        <div class="slide title-slide">
+            <span class="emoji">🎯</span>
+            <h2>Conclusion</h2>
+            <p style="font-size: 1.5rem; margin-top: 30px;">Le Sandbox Environment offre un cadre sécurisé et performant pour le développement</p>
+            
+            <div class="tech-stack" style="justify-content: center; margin-top: 40px;">
+                <span class="badge">Amazon Linux 2023</span>
+                <span class="badge">Node.js 22</span>
+                <span class="badge">Python 3</span>
+                <span class="badge">DNF</span>
+            </div>
+
+            <p style="margin-top: 50px; font-size: 1.2rem; color: #666;">Prêt à développer en toute sécurité! 🚀</p>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">9</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prev-btn">← Précédent</button>
+        <button class="nav-btn" id="next-btn">Suivant →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const currentSlideSpan = document.getElementById('current-slide');
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            currentSlideSpan.textContent = currentSlide + 1;
+
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) showSlide(currentSlide - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            } else if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        });
+
+        prevBtn.disabled = true;
+    </script>
+</body>
+</html>
