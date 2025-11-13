@@ -1,501 +1,471 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SALMA ELFA - Moderne & Responsive</title>
-  <style>
-    /* Reset */
-    * {
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation - Sandbox Environment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      background: linear-gradient(135deg, #0077cc, #004a7c);
-      color: #222;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+            height: 100vh;
+        }
 
-    header {
-      width: 100%;
-      background: rgba(0,0,0,0.35);
-      padding: 20px 40px;
-      color: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
 
-    .brand {
-      font-size: 2.5rem;
-      font-weight: 900;
-      letter-spacing: 4px;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-      user-select: none;
-    }
+        .slide {
+            width: 90%;
+            max-width: 1200px;
+            height: 85vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px 80px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            animation: slideIn 0.5s ease-out;
+        }
 
-    .auth-buttons button {
-      background: #00bfff;
-      border: none;
-      padding: 10px 22px;
-      margin-left: 12px;
-      border-radius: 30px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      font-size: 1rem;
-    }
+        .slide.active {
+            display: flex;
+        }
 
-    .auth-buttons button:hover,
-    .auth-buttons button:focus-visible {
-      background: #005f99;
-      outline: 3px solid #00bfff;
-      outline-offset: 2px;
-    }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
-    nav {
-      width: 100%;
-      background: white;
-      display: flex;
-      justify-content: center;
-      padding: 14px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-      flex-wrap: wrap;
-      gap: 12px;
-      user-select: none;
-    }
+        .slide h1 {
+            font-size: 3.5rem;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
 
-    nav a {
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: #0077cc;
-      text-decoration: none;
-      padding: 10px 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+        .slide h2 {
+            font-size: 2.5rem;
+            color: #764ba2;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
 
-    nav a:hover,
-    nav a:focus-visible {
-      background: #0077cc;
-      color: white;
-      box-shadow: 0 0 10px #0077cc;
-      outline: none;
-    }
+        .slide h3 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 20px;
+            margin-top: 30px;
+            font-weight: 600;
+        }
 
-    main.content {
-      width: 100%;
-      max-width: 1100px;
-      background: white;
-      border-radius: 20px;
-      margin: 30px auto 60px;
-      padding: 40px 30px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.15);
-      min-height: 600px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
+        .slide p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
 
-    /* Message for "en cours" */
-    .section-message {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #0077cc;
-      padding: 40px;
-      border: 3px dashed #0077cc;
-      border-radius: 15px;
-      text-align: center;
-      user-select: none;
-    }
+        .slide ul {
+            list-style: none;
+            margin-left: 0;
+        }
 
-    /* Equipment cards for RÉSEAUX */
-    .equipment-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 25px;
-      width: 100%;
-      padding-top: 10px;
-    }
+        .slide li {
+            font-size: 1.4rem;
+            line-height: 2;
+            color: #444;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
 
-    .card {
-      background: linear-gradient(145deg, #e6f0ff, #ffffff);
-      border-radius: 20px;
-      width: 280px;
-      box-shadow: 0 8px 20px rgba(0,119,204,0.3);
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      position: relative;
-      padding-bottom: 20px;
-    }
+        .slide li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
 
-    .card:hover,
-    .card:focus-visible {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,119,204,0.6);
-      outline: none;
-    }
+        .highlight {
+            background: linear-gradient(120deg, #ffd89b 0%, #19547b 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
 
-    .card:focus-visible {
-      outline: 3px solid #00bfff;
-      outline-offset: 4px;
-    }
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
 
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-bottom: 4px solid #0077cc;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-    }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
 
-    .card .number {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background-color: #0077cc;
-      color: white;
-      font-weight: 700;
-      font-size: 18px;
-      width: 34px;
-      height: 34px;
-      line-height: 34px;
-      border-radius: 50%;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-      user-select: none;
-    }
+        .card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+        }
 
-    .card h3 {
-      color: #004a7c;
-      margin: 20px 0 8px;
-      font-size: 24px;
-    }
+        .card h3 {
+            color: white;
+            margin-top: 0;
+        }
 
-    .card p.price {
-      color: #cc00cc;
-      font-size: 21px;
-      font-weight: 900;
-      margin: 8px 0 12px;
-    }
+        .card p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+        }
 
-    .card p.desc {
-      font-size: 1rem;
-      color: #222;
-      padding: 0 15px;
-      line-height: 1.3;
-      min-height: 54px;
-    }
+        .navigation {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
 
-    /* Contact box */
-    #contact {
-      max-width: 450px;
-      width: 90%;
-      padding: 25px 30px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,119,204,0.3);
-      border: 2px solid #0077cc;
-      text-align: center;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      user-select: none;
-    }
+        .nav-btn {
+            background: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            color: #667eea;
+        }
 
-    /* Login and Signup */
-    .form-container {
-      max-width: 400px;
-      margin: 0 auto;
-      text-align: left;
-      width: 100%;
-    }
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
 
-    input[type="text"], input[type="email"], input[type="password"] {
-      width: 100%;
-      padding: 15px;
-      margin: 10px 0 20px;
-      border-radius: 12px;
-      border: 2px solid #0077cc;
-      font-size: 1rem;
-      box-sizing: border-box;
-      transition: border-color 0.3s ease;
-    }
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="password"]:focus {
-      border-color: #00bfff;
-      outline: none;
-    }
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #667eea;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
 
-    button.submit-btn {
-      background: #0077cc;
-      color: white;
-      border: none;
-      padding: 15px;
-      width: 100%;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
+        .title-slide {
+            text-align: center;
+            justify-content: center !important;
+        }
 
-    button.submit-btn:hover,
-    button.submit-btn:focus-visible {
-      background: #004a7c;
-      outline: 3px solid #00bfff;
-      outline-offset: 2px;
-    }
+        .title-slide h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+        }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav {
-        font-size: 18px;
-      }
+        .title-slide .subtitle {
+            font-size: 1.8rem;
+            color: #666;
+            font-weight: 300;
+        }
 
-      .equipment-list {
-        flex-direction: column;
-        align-items: center;
-      }
+        .emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
 
-      .card {
-        width: 90%;
-        max-width: 400px;
-      }
-    }
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            margin: 5px;
+            font-weight: 500;
+        }
 
-    /* Hide all except default initially */
-    #equipements, #contact, #login, #signup, #sectionMessage {
-      display: none;
-    }
-  </style>
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <span class="emoji">🚀</span>
+            <h1>Sandbox Environment</h1>
+            <p class="subtitle">Environnement de développement isolé et sécurisé</p>
+            <p class="subtitle" style="margin-top: 40px; font-size: 1.3rem;">Amazon Linux 2023 | Node.js 22 | Python 3</p>
+        </div>
 
-<header>
-  <div class="brand" aria-label="Nom du site">SALMA ELFA</div>
-  <div class="auth-buttons">
-    <button onclick="showSection('signup')" aria-label="Bouton pour s'inscrire">Sign Up</button>
-    <button onclick="showSection('login')" aria-label="Bouton pour se connecter">Login</button>
-  </div>
-</header>
+        <!-- Slide 2: Qu'est-ce qu'un Sandbox? -->
+        <div class="slide">
+            <h2>🔒 Qu'est-ce qu'un Sandbox Environment?</h2>
+            <p style="margin-top: 30px;">Un <span class="highlight">sandbox</span> est un environnement d'exécution isolé qui permet de tester et d'exécuter du code en toute sécurité.</p>
+            
+            <h3>Avantages principaux:</h3>
+            <ul>
+                <li>Isolation complète du système hôte</li>
+                <li>Sécurité renforcée pour l'exécution de code</li>
+                <li>Environnement reproductible et cohérent</li>
+                <li>Facilite les tests sans risque</li>
+            </ul>
+        </div>
 
-<nav role="navigation" aria-label="Menu principal">
-  <a href="#" onclick="showMessage(); return false;" tabindex="0" role="link" aria-label="Ordinateur catégorie">ORDINATEUR</a>
-  <a href="#" onclick="showMessage(); return false;" tabindex="0" role="link" aria-label="Accessoires catégorie">ACCESSOIRES</a>
-  <a href="#" onclick="showMessage(); return false;" tabindex="0" role="link" aria-label="Impression catégorie">IMPRESSION</a>
-  <a href="#" onclick="showMessage(); return false;" tabindex="0" role="link" aria-label="Logiciels catégorie">LOGICIELS</a>
-  <a href="#" onclick="showEquipements(); return false;" tabindex="0" role="link" aria-label="Réseaux catégorie">RÉSEAUX</a>
-  <a href="#" onclick="showContact(); return false;" tabindex="0" role="link" aria-label="Contactez-nous">CONTACTEZ-NOUS</a>
-</nav>
+        <!-- Slide 3: Configuration Technique -->
+        <div class="slide">
+            <h2>⚙️ Configuration Technique</h2>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Système d'exploitation</h3>
+                    <p><strong>Amazon Linux 2023</strong></p>
+                    <p>Distribution Linux optimisée pour le cloud avec gestionnaire de paquets DNF</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Runtime JavaScript</h3>
+                    <p><strong>Node.js 22</strong></p>
+                    <p>Dernière version LTS pour des performances optimales</p>
+                </div>
+            </div>
 
-<main class="content" role="main">
-  <section id="default" tabindex="0" aria-live="polite" aria-label="Bienvenue">
-    <h2>Bienvenue sur le site de SALMA ELFA</h2>
-    <p>Choisissez une catégorie ci-dessus pour commencer</p>
-  </section>
+            <div class="card" style="margin-top: 30px;">
+                <h3>Support Python</h3>
+                <p><strong>Python 3</strong> disponible avec installation de Pip requise avant les dépendances</p>
+            </div>
+        </div>
 
-  <section id="sectionMessage" class="section-message" tabindex="0" aria-live="polite" aria-label="Message">
-    En cours de réalisation...
-  </section>
+        <!-- Slide 4: Gestionnaire de Paquets -->
+        <div class="slide">
+            <h2>📦 Gestionnaire de Paquets DNF</h2>
+            
+            <p>DNF (Dandified YUM) est le gestionnaire de paquets moderne d'Amazon Linux 2023</p>
 
-  <section id="equipements" class="equipment-list" aria-label="Liste des équipements réseaux" tabindex="0">
-    <article class="card" tabindex="0" role="button" aria-pressed="false" aria-label="Routeur, prix 6888 dirhams">
-      <div class="number">1</div>
-      <img src="https://m.media-amazon.com/images/I/81CszTVDeHL.jpg" alt="Image d'un routeur" />
-      <h3>Routeur</h3>
-      <p class="price">6888 MAD</p>
-      <p class="desc">Routeur performant avec plusieurs ports Ethernet pour réseaux domestiques et professionnels.</p>
-    </article>
+            <h3>Commandes essentielles:</h3>
+            <div class="code-block">
+# Installation de paquets
+dnf install package-name
 
-    <article class="card" tabindex="0" role="button" aria-pressed="false" aria-label="Switch, prix 20484 dirhams">
-      <div class="number">2</div>
-      <img src="https://m.media-amazon.com/images/I/71adIgi8u-L._AC_SL1500_.jpg" alt="Image d'un switch réseau" />
-      <h3>Switch</h3>
-      <p class="price">20484 MAD</p>
-      <p class="desc">Switch manageable pour optimiser la gestion de votre réseau.</p>
-    </article>
+# Mise à jour du système
+dnf update
 
-    <article class="card" tabindex="0" role="button" aria-pressed="false" aria-label="Modem, prix 768 dirhams">
-      <div class="number">3</div>
-      <img src="https://m1.ngt.ma/8173-large_default/modem-routeur-wifi-ac1200-vdsladsl-archer-vr300-.jpg" alt="Image d'un modem" />
-      <h3>Modem</h3>
-      <p class="price">768 MAD</p>
-      <p class="desc">Modem VDSL/ADSL performant pour une connexion Internet stable.</p>
-    </article>
+# Recherche de paquets
+dnf search keyword
 
-    <article class="card" tabindex="0" role="button" aria-pressed="false" aria-label="Point d'accès, prix 399 dirhams">
-      <div class="number">4</div>
-      <img src="https://ma.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/56/442756/1.jpg" alt="Image d'un point d'accès Wi-Fi" />
-      <h3>Point d'accès</h3>
-      <p class="price">399 MAD</p>
-      <p class="desc">Point d'accès Wi-Fi pour étendre la couverture réseau sans fil.</p>
-    </article>
+# Informations sur un paquet
+dnf info package-name
+            </div>
+        </div>
 
-    <article class="card" tabindex="0" role="button" aria-pressed="false" aria-label="Câble Ethernet, prix 114 dirhams">
-      <div class="number">5</div>
-      <img src="https://ma.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/51/033566/1.jpg" alt="Image d'un câble Ethernet" />
-      <h3>Câble Ethernet</h3>
-      <p class="price">114 MAD</p>
-      <p class="desc">Câble Ethernet catégorie 6 pour des connexions rapides et stables.</p>
-    </article>
+        <!-- Slide 5: Node.js 22 -->
+        <div class="slide">
+            <h2>🟢 Node.js 22 Runtime</h2>
+            
+            <p>Node.js 22 apporte des améliorations significatives en termes de performances et de fonctionnalités</p>
 
-    <article class="card" tabindex="0" role="button" aria-pressed="false" aria-label="Pare-feu, prix 16000 dirhams">
-      <div class="number">6</div>
-      <img src="https://m.media-amazon.com/images/I/616WSlOiycL._AC_SL1500_.jpg" alt="Image d'un pare-feu matériel" />
-      <h3>Pare-feu</h3>
-      <p class="price">16000 MAD</p>
-      <p class="desc">Pare-feu matériel pour protéger votre réseau des attaques externes.</p>
-    </article>
-  </section>
+            <h3>Installation des dépendances:</h3>
+            <div class="code-block">
+# Initialiser un projet Node.js
+npm init -y
 
-  <section id="contact" tabindex="0" aria-label="Informations de contact">
-    <h2>Contactez-nous</h2>
-    <p><strong>Email :</strong> <a href="mailto:salma.elfarouki399@gmail.com">salma.elfarouki399@gmail.com</a></p>
-    <p><strong>Téléphone :</strong> <a href="tel:+212615268291">+212 615268291</a></p>
-    <p><strong>Adresse :</strong> Hay lmaacella </p>
-  </section>
+# Installer des dépendances
+npm install express
 
-  <section id="login" class="form-container" style="display:none;" tabindex="0" aria-label="Formulaire de connexion">
-    <h2>Connexion</h2>
-    <form id="loginForm" onsubmit="return sendLogin();">
-      <label for="loginEmail">Email :</label>
-      <input type="email" id="loginEmail" placeholder="Email" required aria-required="true" />
-      
-      <label for="loginPassword">Mot de passe :</label>
-      <input type="password" id="loginPassword" placeholder="Mot de passe" required aria-required="true" />
-      
-      <button type="submit" class="submit-btn">Se connecter</button>
-      <p id="loginMessage" aria-live="polite" style="color:red;"></p>
-    </form>
-  </section>
+# Exécuter un script
+node app.js
+            </div>
 
-  <section id="signup" class="form-container" style="display:none;" tabindex="0" aria-label="Formulaire d'inscription">
-    <h2>Créer un compte</h2>
-    <form id="signupForm" onsubmit="return sendSignup();">
-      <label for="signupName">Nom complet :</label>
-      <input type="text" id="signupName" placeholder="Nom complet" required aria-required="true" />
-      
-      <label for="signupEmail">Email :</label>
-      <input type="email" id="signupEmail" placeholder="Email" required aria-required="true" />
-      
-      <label for="signupPassword">Mot de passe :</label>
-      <input type="password" id="signupPassword" placeholder="Mot de passe" required aria-required="true" />
-      
-      <button type="submit" class="submit-btn">S'inscrire</button>
-      <p id="signupMessage" aria-live="polite" style="color:red;"></p>
-    </form>
-  </section>
-</main>
+            <div class="tech-stack">
+                <span class="badge">npm</span>
+                <span class="badge">yarn</span>
+                <span class="badge">pnpm</span>
+                <span class="badge">ES Modules</span>
+            </div>
+        </div>
 
-<script>
-  function hideAll() {
-    ['equipements', 'contact', 'default', 'sectionMessage', 'login', 'signup'].forEach(id => {
-      document.getElementById(id).style.display = 'none';
-    });
-  }
+        <!-- Slide 6: Python 3 -->
+        <div class="slide">
+            <h2>🐍 Python 3 Support</h2>
+            
+            <p><strong>Important:</strong> Pip doit être installé avant de procéder aux installations de dépendances</p>
 
-  function showEquipements() {
-    hideAll();
-    document.getElementById('equipements').style.display = 'flex';
-  }
+            <h3>Configuration Python:</h3>
+            <div class="code-block">
+# Installer pip
+python3 -m ensurepip --upgrade
 
-  function showContact() {
-    hideAll();
-    document.getElementById('contact').style.display = 'block';
-  }
+# Installer des packages
+pip install requests numpy pandas
 
-  function showMessage() {
-    hideAll();
-    document.getElementById('sectionMessage').style.display = 'block';
-  }
+# Créer un environnement virtuel
+python3 -m venv venv
+source venv/bin/activate
 
-  function showSection(name) {
-    hideAll();
-    const section = document.getElementById(name);
-    if (section) {
-      section.style.display = 'block';
-    } else {
-      showMessage();
-    }
-  }
+# Installer depuis requirements.txt
+pip install -r requirements.txt
+            </div>
+        </div>
 
-  // Validation login
-  function sendLogin() {
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value.trim();
-    const messageEl = document.getElementById('loginMessage');
-    messageEl.textContent = '';
+        <!-- Slide 7: Workflow de Développement -->
+        <div class="slide">
+            <h2>🔄 Workflow de Développement</h2>
+            
+            <ul>
+                <li><strong>Étape 1:</strong> Initialiser l'environnement sandbox</li>
+                <li><strong>Étape 2:</strong> Installer les gestionnaires de paquets nécessaires (pip pour Python)</li>
+                <li><strong>Étape 3:</strong> Installer les dépendances du projet</li>
+                <li><strong>Étape 4:</strong> Développer et tester le code en isolation</li>
+                <li><strong>Étape 5:</strong> Valider les résultats avant déploiement</li>
+            </ul>
+        </div>
 
-    if (!email) {
-      messageEl.textContent = 'Veuillez saisir votre email.';
-      return false;
-    }
-    if (!validateEmail(email)) {
-      messageEl.textContent = 'Veuillez saisir un email valide.';
-      return false;
-    }
-    if (!password) {
-      messageEl.textContent = 'Veuillez saisir votre mot de passe.';
-      return false;
-    }
-    alert("Connexion réussie !\nEmail : " + email);
-    return false; // Prevent actual form submission for demo
-  }
+        <!-- Slide 8: Bonnes Pratiques -->
+        <div class="slide">
+            <h2>✅ Bonnes Pratiques</h2>
+            
+            <div class="grid-2">
+                <div>
+                    <h3>Sécurité</h3>
+                    <ul style="margin-left: 0;">
+                        <li>Toujours tester en sandbox d'abord</li>
+                        <li>Limiter les permissions</li>
+                        <li>Isoler les environnements</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>Performance</h3>
+                    <ul style="margin-left: 0;">
+                        <li>Utiliser les versions LTS</li>
+                        <li>Optimiser les dépendances</li>
+                        <li>Monitorer les ressources</li>
+                    </ul>
+                </div>
+            </div>
 
-  // Validation signup
-  function sendSignup() {
-    const name = document.getElementById('signupName').value.trim();
-    const email = document.getElementById('signupEmail').value.trim();
-    const password = document.getElementById('signupPassword').value.trim();
-    const messageEl = document.getElementById('signupMessage');
-    messageEl.textContent = '';
+            <div style="margin-top: 40px;">
+                <h3>Gestion des Dépendances</h3>
+                <ul style="margin-left: 0;">
+                    <li>Documenter toutes les dépendances (package.json, requirements.txt)</li>
+                    <li>Versionner les packages pour la reproductibilité</li>
+                </ul>
+            </div>
+        </div>
 
-    if (!name) {
-      messageEl.textContent = 'Veuillez saisir votre nom complet.';
-      return false;
-    }
-    if (!email) {
-      messageEl.textContent = 'Veuillez saisir votre email.';
-      return false;
-    }
-    if (!validateEmail(email)) {
-      messageEl.textContent = 'Veuillez saisir un email valide.';
-      return false;
-    }
-    if (!password) {
-      messageEl.textContent = 'Veuillez saisir un mot de passe.';
-      return false;
-    }
-    if (password.length < 6) {
-      messageEl.textContent = 'Le mot de passe doit contenir au moins 6 caractères.';
-      return false;
-    }
-    alert("Inscription réussie !\nEmail : " + email);
-    return false; // Prevent actual form submission for demo
-  }
+        <!-- Slide 9: Conclusion -->
+        <div class="slide title-slide">
+            <span class="emoji">🎯</span>
+            <h2>Conclusion</h2>
+            <p style="font-size: 1.5rem; margin-top: 30px;">Le Sandbox Environment offre un cadre sécurisé et performant pour le développement</p>
+            
+            <div class="tech-stack" style="justify-content: center; margin-top: 40px;">
+                <span class="badge">Amazon Linux 2023</span>
+                <span class="badge">Node.js 22</span>
+                <span class="badge">Python 3</span>
+                <span class="badge">DNF</span>
+            </div>
 
-  // Email regex simple
-  function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email.toLowerCase());
-  }
-</script>
+            <p style="margin-top: 50px; font-size: 1.2rem; color: #666;">Prêt à développer en toute sécurité! 🚀</p>
+        </div>
+    </div>
 
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">9</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prev-btn">← Précédent</button>
+        <button class="nav-btn" id="next-btn">Suivant →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const currentSlideSpan = document.getElementById('current-slide');
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            currentSlideSpan.textContent = currentSlide + 1;
+
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) showSlide(currentSlide - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            } else if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        });
+
+        prevBtn.disabled = true;
+    </script>
 </body>
 </html>
